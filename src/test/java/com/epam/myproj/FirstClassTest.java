@@ -8,5 +8,6 @@ public class FirstClassTest {
     @Test
     public void getStringTest() {
         Assert.assertEquals("Test", new FirstClass().getString());
+        System.out.println(System.getProperty("my"));
     }
 }

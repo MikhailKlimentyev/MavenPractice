@@ -9,32 +9,42 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <junitVersion>4.13</junitVersion>
-        <surefirPluginVersion>3.0.0-M5</surefirPluginVersion>
+        <junit.version>4.13</junit.version>
+        <surefirePlugin.version>3.0.0-M3</surefirePlugin.version>
+        <test.value>itWorks</test.value>
+        <my.prop>my</my.prop>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>${junitVersion}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
+            <version>${junit.version}</version>
         </dependency>
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources-filtered</directory>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
         <pluginManagement>
             <plugins>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>${surefirPluginVersion}</version>
+                    <version>${surefirePlugin.version}</version>
+                    <configuration>
+                        <systemPropertyVariables>
+                            <propertyName>${my.prop}</propertyName>
+                        </systemPropertyVariables>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
